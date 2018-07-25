@@ -8,18 +8,24 @@
   },
   "license": "MIT",
   "scripts": {
-    "build-from-source": "lerna exec --scope serialport -- npm i --build-from-source",
+    "rebuild": "lerna exec --scope serialport -- npm run rebuild",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "docs": "jsdoc -c ./.jsdoc.json ",
     "exec-test": "lerna exec node ./",
+    "format": "eslint packages --fix",
     "generate": "plop",
     "lint": "eslint packages && lerna exec --scope serialport -- npm run lint",
     "postinstall": "lerna bootstrap",
-    "prebuild-upload": "lerna exec --scope serialport -- npm run prebuild-upload",
     "prebuild": "lerna exec --scope serialport -- npm run prebuild",
     "publish": "lerna publish",
     "test:watch": "mocha -w",
-    "test": "nyc --reporter=html --reporter=text --reporter lcovonly mocha"
+    "test": "nyc --reporter=html --reporter=text --reporter lcovonly mocha",
+
+    "arduino-test": "TEST_PORT=$(./bin/find-arduino.js) npm test",
+    "debugger": "TEST_PORT=$(./bin/find-arduino.js) node --inspect --debug-brk test/manual-testing/performance.js",
+    "changelog": "conventional-changelog -i CHANGELOG.md -s",
+    "stress": "mocha --no-timeouts test/arduinoTest/stress.js",
+    "valgrind": "TEST_PORT=$(./bin/find-arduino.js) valgrind --leak-check=full node test/manual-testing/memory-binding.js",
   },
   "repository": {
     "type": "git",
