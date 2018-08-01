@@ -1,0 +1,16 @@
+{
+  "name": "@serialport/serial-testing",
+  "version": "1.0.0",
+  "main": "serial-testing.js",
+  "dependencies": {
+    "safe-buffer": "^5.1.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/node-serialport/parsers.git"
+  }
+}
